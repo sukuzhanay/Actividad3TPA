@@ -1,3 +1,4 @@
+ import sys
  #variables del correo y la contrasena del login
  #es obligatoria  
 correo = "actividad@gmail.com"
@@ -56,7 +57,21 @@ def inorder(root):
         count+=1
         #recorrido por la derecha
         inorder(root.derecha)
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------------------
+
+#-----------------------------------APARTADO C--------------------------------------
+
+#funcion que calcula la altura del arbol (contando el nivel inferior como 0)
+def altura(root):
+    #si el arbol esta vacio devuelve -1
+    if root is None:
+        return -1
+    #obtenemos el valor maximo de las alturas del lado izquierdo y el
+    #lado derecho y le sumamos uno de la altura del nodo raiz
+    else:
+        return (1+max(altura(root.izquierda),altura(root.derecha)))
+#------------------------------------------------------------------------------------
+
 
 def login():
    #se pide el correo
@@ -90,31 +105,28 @@ def menu():
 #         listaV = AjuntarYOrdenar(lista1, lista2)
 #         AobtenerMediana(listaV)
 #         print("---------------------------------------------------------------------------------------\n")
-         menu()
+        menu()
     elif opcion == "B" or opcion =="b":
         print("\n------------------------------EJERCICIO B---------------------------------------------")
         inorder(root)
         print("El numero de elementos del arbol es" , count)
         print("---------------------------------------------------------------------------------------\n")
         menu()
-#     elif opcion == "C" or opcion =="c":
-#         print("\n------------------------------EJERCICIO C---------------------------------------------")
-#         m=[[1,2],[3,4]]
-#         print("Matriz: ",m)
-#         mtx = CtrasponerDC(m, 0, len(m)-1, 0, len(m)-1)
-#         print("Matriz traspuesta: ",mtx)
-#         print("---------------------------------------------------------------------------------------\n")
-#         menu()
+    elif opcion == "C" or opcion =="c":
+        print("\n------------------------------EJERCICIO C---------------------------------------------")
+        alt = altura(root)
+        #como la funcion altura devuelve la profundidad contando que el nivel 
+        #inferior es 0, le sumamos uno para que el nivel inferior sea 1
+        alt+=1
+        print("La altura del arbol es" , alt)
+        print("---------------------------------------------------------------------------------------\n")
+        menu()
 #     elif opcion == "D" or opcion =="d":
 #         print("\n------------------------------EJERCICIO D---------------------------------------------")
-#         array = DgenerarArray()
-#         print(array)
-#         global listaInicial   
-#         listaInicial = array
-#         Ddivide(array, 0, len(array)-1)  
-#     else:
-#         print("SALIENDO DEL PROGRAMA...")
-#         sys.exit(-1)
+#         menu() 
+    else:
+        print("SALIENDO DEL PROGRAMA...")
+        sys.exit(-1)
 
 #ejecucion
 login()
